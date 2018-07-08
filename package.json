@@ -8,9 +8,16 @@
     "socket.io": "^2.1.1"
   },
   "scripts": {
-    "start": "node server/server.js"
+    "start": "node server/server.js",
+    "test": "mocha server/**/*.test.js",
+    "test-watch": "nodemon --exec 'yarn test'"
   },
   "engines": {
     "node": "10.5.0"
+  },
+  "devDependencies": {
+    "expect": "^23.3.0",
+    "mocha": "^5.2.0",
+    "nodemon": "^1.17.5"
   }
 }
