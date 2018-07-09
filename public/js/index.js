@@ -9,14 +9,17 @@ socket.on("disconnect", () => {
 });
 
 socket.on("newMessage", message => {
+  const formattedTime = moment(message.createdAt).format("h:mm a");
   const li = document.createElement("li");
 
-  li.textContent = `${message.from}: ${message.text}`;
+  li.textContent = `${message.from} [${formattedTime}]: ${message.text}`;
 
   $("#messages").appendChild(li);
 });
 
 socket.on("newLocationMessage", message => {
+  const formattedTime = moment(message.createdAt).format("h:mm a");
+
   const li = document.createElement("li");
   const a = document.createElement("a");
 
@@ -24,7 +27,7 @@ socket.on("newLocationMessage", message => {
   a.setAttribute("href", message.url);
 
   a.textContent = "My current location";
-  li.textContent = `${message.from}: `;
+  li.textContent = `${message.from} [${formattedTime}]: `;
   li.appendChild(a);
   $("#messages").appendChild(li);
 });
@@ -53,7 +56,7 @@ $("#send-location").on("click", e => {
   navigator.geolocation.getCurrentPosition(
     position => {
       $("#send-location").removeAttribute("disabled");
-      $("#send-location").textContent = 'Send Location';
+      $("#send-location").textContent = "Send Location";
       socket.emit("createLocationMessage", {
         latitude: position.coords.latitude,
         longitude: position.coords.longitude
@@ -61,7 +64,7 @@ $("#send-location").on("click", e => {
     },
     () => {
       $("#send-location").removeAttribute("disabled");
-      $("#send-location").textContent = 'Send Location';
+      $("#send-location").textContent = "Send Location";
       alert("Unable to fetch location");
     }
   );

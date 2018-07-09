@@ -14,7 +14,6 @@ describe('generageMessage', () => {
 describe('generateLocationMessage', () => {
   it('should generate correct location object', () => {
     const locationMsg = generateLocationMessage('John', 100, 200);
-    console.log(locationMsg);
 
     expect(locationMsg.from).toBe('John');
     expect(locationMsg.url).toBe('https://www.google.com/maps?q=100,200');
