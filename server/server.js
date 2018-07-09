@@ -24,8 +24,9 @@ io.on('connection', socket => {
   socket.broadcast.emit('newMessage', generateMessage('Admin', 'New user joined'));
 
   // create custom event && custom data
-  socket.on('createMessage', data => {
+  socket.on('createMessage', (data, cb) => {
     io.emit('newMessage', generateMessage(data.from, data.text));
+    cb('This is from the server');
   });
 
   socket.on('disconnect', () => {
