@@ -3,6 +3,7 @@ const http = require('http');
 const express = require('express');
 const socketIO = require('socket.io');
 const { generateMessage, generateLocationMessage } = require('./utils/message');
+const { isRealString } = require('./utils/validation');
 
 const publicPath = path.join(__dirname, '../public');
 const port = process.env.PORT || 3000;
@@ -23,6 +24,13 @@ io.on('connection', socket => {
   // broadcast sends message to every user but this socket
   socket.broadcast.emit('newMessage', generateMessage('Admin', 'New user joined'));
 
+  socket.on('join', (params, cb) => {
+    if (!isRealString(params.name) || !isRealString(params.room)) {
+      cb('Name and room name are required');
+    } else {
+      cb();
+    }
+  });
   // create custom event && custom data
   socket.on('createMessage', (data, cb) => {
     io.emit('newMessage', generateMessage(data.from, data.text));
