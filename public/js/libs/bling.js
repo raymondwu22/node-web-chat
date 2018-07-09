@@ -12,7 +12,5 @@ NodeList.prototype.__proto__ = Array.prototype; // eslint-disable-line
 NodeList.prototype.on = NodeList.prototype.addEventListener = function(name, fn) {
   this.forEach(elem => {
     elem.on(name, fn);
-  });
-};
-
-export { $, $$ };
+  }
+)};

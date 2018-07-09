@@ -6,25 +6,30 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Node Chat App</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
-  <script src="main.js"></script> -->
+  <link rel="stylesheet" type="text/css" media="screen" href="./css/styles.css" />
+  <!-- <script src="main.js"></script>  -->
 </head>
 
-<body>
-  <h1>Node Chat App</h1>
-  <div>
-    <ol id="messages">
+<body class="chat">
+  <div class="chat__sidebar">
+    <h3>People</h3>
+    <div id="user"></div>
+  </div>
+  <div class="chat__main">
+    <ol id="messages" class="chat__messages">
 
     </ol>
+    <div class="chat__footer">
+      <form id="message-form">
+        <input type="text" name='message' placeholder="Message" autofocus autocomplete='off'>
+        <button class="button">Send</button>
+      </form>
+    </div>
+    <button id='send-location' class="button">Send location</button>
   </div>
-  <form id="message-form">
-    <input type="text" name='message' placeholder="Message">
-    <button>Send</button>
-  </form>
-  <button id='send-location'>Send location</button>
-
   <script src="/socket.io/socket.io.js"></script>
-  <script src='./js/libs/jquery-3.3.1.min.js'></script>
+  <!-- <script src='./js/libs/jquery-3.3.1.min.js'></script> -->
+
   <script src='./js/libs/bling.js'></script>
   <script src='./js/index.js'></script>
 </body>
